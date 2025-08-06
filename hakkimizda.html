@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda - Çınar Creative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--background) 0%, var(--background-alt) 100%);
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: var(--font-size-5xl);
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-hero p {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .story-content h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .story-content p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        .story-visual {
+            position: relative;
+            height: 400px;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .story-visual i {
+            font-size: 6rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .story-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .values-section {
+            background: var(--background-alt);
+            text-align: center;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .value-card {
+            background: var(--background);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: transform var(--transition-base);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .value-icon i {
+            font-size: var(--font-size-2xl);
+            color: white;
+        }
+
+        .value-card h3 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .team-section {
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .team-card {
+            background: var(--background);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all var(--transition-base);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-lg);
+        }
+
+        .team-photo {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-photo i {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .team-info {
+            padding: var(--spacing-xl);
+        }
+
+        .team-name {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .team-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .team-bio {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            background: var(--background-alt);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .team-social a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .cta-contact {
+            background: var(--background-alt);
+            text-align: center;
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .cta-contact h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-contact p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-2xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-form-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .achievements {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .achievements h2 {
+            color: white;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .achievement-item {
+            padding: var(--spacing-lg);
+        }
+
+        .achievement-number {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .achievement-label {
+            font-size: var(--font-size-lg);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 1024px) {
+            .story-section {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-2xl);
+                text-align: center;
+            }
+
+            .story-visual {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 100px 0 60px;
+            }
+
+            .about-hero h1 {
+                font-size: var(--font-size-4xl);
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Çınar Creative</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="calismalarimiz.html" class="nav-link">Çalışmalarımız</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hakkimizda.html" class="nav-link active">Hakkımızda</a>
+                </li>
+                <li class="nav-item">
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="fade-in">Hakkımızda</h1>
+            <p class="fade-in">
+                Dijital dünyada yaratıcılığın sınırlarını zorlayan, markaları öne çıkaran ve 
+                hikayelerini etkili şekilde anlatan bir ajansız. 2020'den beri müşterilerimizin 
+                dijital yolculuklarında güvenilir partnerleri olarak yer alıyoruz.
+            </p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="story-section">
+                <div class="story-content slide-up">
+                    <h2>Hikayemiz</h2>
+                    <p>
+                        Çınar Creative, 2020 yılında dijital pazarlama dünyasında fark yaratma vizyonuyla kuruldu. 
+                        Kurucularımız, geleneksel reklamcılık anlayışının dijital çağda yetersiz kaldığını fark ederek, 
+                        markaları sosyal medya dünyasında öne çıkaracak yaratıcı çözümler geliştirmeye odaklandı.
+                    </p>
+                    <p>
+                        İlk gün itibariyle müşterilerimizin sadece hizmet sağlayıcısı değil, dijital dönüşüm yolculuklarında 
+                        stratejik partneri olmayı hedefledik. Bu yaklaşımımız sayesinde, küçük işletmelerden büyük markalara 
+                        kadar geniş bir yelpazede başarılı projelere imza attık.
+                    </p>
+                    <p>
+                        Bugün, 50'den fazla başarılı projeyle, dijital pazarlama alanında güvenilir bir marka haline geldik. 
+                        Her proje bizim için yeni bir öğrenme fırsatı ve yaratıcılığımızı kanıtlama şansı.
+                    </p>
+                </div>
+                <div class="story-visual slide-up">
+                    <i class="fas fa-rocket"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section section-padding">
+        <div class="container">
+            <div class="section-header slide-up">
+                <h2>Değerlerimiz</h2>
+                <p>İş yaparken bizi yönlendiren temel prensipler</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card slide-up">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Yaratıcılık</h3>
+                    <p>Her projede özgün ve etkili çözümler üretir, sıradanlıktan uzak durarak markaları öne çıkarırız.</p>
+                </div>
+                <div class="value-card slide-up">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Güvenilirlik</h3>
+                    <p>Müşterilerimizle kurduğumuz güven ilişkisi, uzun vadeli başarılı ortaklıkların temelidir.</p>
+                </div>
+                <div class="value-card slide-up">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Sonuç Odaklılık</h3>
+                    <p>Sadece güzel görünmeyen, aynı zamanda ölçülebilir sonuçlar üreten stratejiler geliştiririz.</p>
+                </div>
+                <div class="value-card slide-up">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>İş Birliği</h3>
+                    <p>Müşterilerimizle birlikte çalışarak, onların vizyonunu dijital dünyaya en iyi şekilde yansıtırız.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements">
+        <div class="container">
+            <h2 class="slide-up">Başarılarımız</h2>
+            <div class="achievements-grid">
+                <div class="achievement-item slide-up">
+                    <div class="achievement-number">150+</div>
+                    <div class="achievement-label">Mutlu Müşteri</div>
+                </div>
+                <div class="achievement-item slide-up">
+                    <div class="achievement-number">500+</div>
+                    <div class="achievement-label">Tamamlanan Proje</div>
+                </div>
+                <div class="achievement-item slide-up">
+                    <div class="achievement-number">5</div>
+                    <div class="achievement-label">Yıllık Deneyim</div>
+                </div>
+                <div class="achievement-item slide-up">
+                    <div class="achievement-number">25+</div>
+                    <div class="achievement-label">Ödül & Başarı</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section section-padding">
+        <div class="container">
+            <div class="section-header slide-up">
+                <h2>Ekibimiz</h2>
+                <p>Yaratıcı ve deneyimli profesyonellerden oluşan güçlü ekibimizle tanışın</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card slide-up">
+                    <div class="team-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Ahmet Çınar</h3>
+                        <p class="team-role">Kurucu & CEO</p>
+                        <p class="team-bio">
+                            10 yıllık dijital pazarlama deneyimi ile ajansımızın vizyonerlik yapan lideri. 
+                            Stratejik düşünce ve yaratıcı çözümlerle markaları büyütmeye odaklanır.
+                        </p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card slide-up">
+                    <div class="team-photo">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Elif Demir</h3>
+                        <p class="team-role">Kreatif Direktör</p>
+                        <p class="team-bio">
+                            Güzel sanatlar eğitimi ve 8 yıllık tasarım deneyimi ile markaların görsel kimliklerini 
+                            yaratıyor. Her projede estetik ve işlevselliği harmanlıyor.
+                        </p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card slide-up">
+                    <div class="team-photo">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Murat Kaya</h3>
+                        <p class="team-role">Dijital Pazarlama Uzmanı</p>
+                        <p class="team-bio">
+                            Google ve Facebook sertifikalı uzman. Veri analizi ve performans pazarlama konularında 
+                            derin bilgisiyle kampanyaları optimize ediyor.
+                        </p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-google"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card slide-up">
+                    <div class="team-photo">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Zeynep Öztürk</h3>
+                        <p class="team-role">Video Prodüksiyon Uzmanı</p>
+                        <p class="team-bio">
+                            Sinema ve televizyon eğitimi almış, 6 yıllık prodüksiyon deneyimi olan uzman. 
+                            Markaların hikayelerini etkileyici videolarla anlatıyor.
+                        </p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-vimeo"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card slide-up">
+                    <div class="team-photo">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Can Yılmaz</h3>
+                        <p class="team-role">Sosyal Medya Uzmanı</p>
+                        <p class="team-bio">
+                            Gen Z'nin nabzını tutan, trend analizi konusunda uzman. Markaları sosyal medyada 
+                            viral yapacak içerik stratejileri geliştiriyor.
+                        </p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card slide-up">
+                    <div class="team-photo">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Ayşe Korkmaz</h3>
+                        <p class="team-role">Müşteri İlişkileri Uzmanı</p>
+                        <p class="team-bio">
+                            İletişim fakültesi mezunu, müşteri memnuniyeti odaklı çalışan uzman. 
+                            Projelerin sorunsuz ilerlemesi için köprü görevi üstleniyor.
+                        </p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Contact Section -->
+    <section class="cta-contact">
+        <div class="container">
+            <h2 class="slide-up">Bizimle Çalışmak İster misiniz?</h2>
+            <p class="slide-up">
+                Markanızı dijital dünyada öne çıkaracak yaratıcı çözümler için bugün bizimle iletişime geçin. 
+                Ücretsiz konsültasyonda projenizi değerlendirelim.
+            </p>
+            
+            <div class="contact-form-section">
+                <form class="contact-form slide-up" id="about-contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="E-posta Adresiniz" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Telefon Numaranız">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" placeholder="Şirket Adınız">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Hangi hizmetimizle ilgileniyorsunuz?</option>
+                            <option value="sosyal-medya">Sosyal Medya Yönetimi</option>
+                            <option value="grafik-tasarim">Grafik Tasarım</option>
+                            <option value="video-produksiyon">Video Prodüksiyon</option>
+                            <option value="dijital-pazarlama">Dijital Pazarlama</option>
+                            <option value="tumu">Tüm Hizmetler</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Projeniz hakkında detayları paylaşın..." rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ücretsiz Konsültasyon Talep Et</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Çınar Creative</h3>
+                    <p>Dijital dünyada yaratıcılığın yeni adı. Markanızı öne çıkaracak yaratıcı çözümler sunuyoruz.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="calismalarimiz.html">Çalışmalarımız</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="index.html#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hizmetlerimiz</h4>
+                    <ul>
+                        <li><a href="#">Sosyal Medya Yönetimi</a></li>
+                        <li><a href="#">Grafik Tasarım</a></li>
+                        <li><a href="#">Video Prodüksiyon</a></li>
+                        <li><a href="#">Dijital Pazarlama</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> info@cinarcreative.com</p>
+                        <p><i class="fas fa-phone"></i> +90 555 123 45 67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Çınar Creative. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // About page specific form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutForm = document.getElementById('about-contact-form');
+            
+            if (aboutForm) {
+                aboutForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(aboutForm);
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        company: formData.get('company'),
+                        service: formData.get('service'),
+                        message: formData.get('message')
+                    };
+
+                    // Simple validation
+                    if (!data.name || !data.email || !data.service || !data.message) {
+                        showNotification('Lütfen tüm gerekli alanları doldurun.', 'error');
+                        return;
+                    }
+
+                    // Email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(data.email)) {
+                        showNotification('Geçerli bir e-posta adresi girin.', 'error');
+                        return;
+                    }
+
+                    // Simulate form submission
+                    const submitButton = aboutForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.textContent;
+                    
+                    submitButton.textContent = 'Gönderiliyor...';
+                    submitButton.disabled = true;
+
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                        aboutForm.reset();
+                        showNotification('Konsültasyon talebiniz başarıyla gönderildi! 24 saat içinde size dönüş yapacağız.', 'success');
+                    }, 2000);
+                });
+            }
+
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+                        <span>${message}</span>
+                        <button class="notification-close">&times;</button>
+                    </div>
+                `;
+
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    max-width: 400px;
+                    padding: 1rem;
+                    border-radius: 0.75rem;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                    z-index: 10000;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                    background: ${type === 'success' ? '#48bb78' : '#f56565'};
+                    color: white;
+                `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                });
+
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

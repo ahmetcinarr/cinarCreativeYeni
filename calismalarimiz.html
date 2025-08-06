@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çalışmalarımız - Çınar Creative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Portfolio Specific Styles */
+        .portfolio-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--background) 0%, var(--background-alt) 100%);
+            text-align: center;
+        }
+
+        .portfolio-hero h1 {
+            font-size: var(--font-size-5xl);
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .portfolio-hero p {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-3xl);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .portfolio-item {
+            background: var(--background);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all var(--transition-base);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-lg);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .portfolio-image i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+            z-index: 2;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 54, 93, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: white;
+        }
+
+        .overlay-content i {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .overlay-content p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .portfolio-content {
+            padding: var(--spacing-xl);
+        }
+
+        .portfolio-category {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--primary-color);
+            color: white;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .portfolio-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .portfolio-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        .portfolio-stats {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-light);
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: var(--background-alt);
+            color: var(--text-light);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+        }
+
+        .cta-section {
+            background: var(--background-alt);
+            text-align: center;
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-section p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-hero {
+                padding: 100px 0 60px;
+            }
+
+            .portfolio-hero h1 {
+                font-size: var(--font-size-4xl);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-filter {
+                gap: var(--spacing-sm);
+            }
+
+            .filter-btn {
+                padding: var(--spacing-xs) var(--spacing-md);
+                font-size: var(--font-size-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Çınar Creative</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Ana Sayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a href="calismalarimiz.html" class="nav-link active">Çalışmalarımız</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+                </li>
+                <li class="nav-item">
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Hero -->
+    <section class="portfolio-hero">
+        <div class="container">
+            <h1 class="fade-in">Çalışmalarımız</h1>
+            <p class="fade-in">Markaları dijital dünyada öne çıkaran yaratıcı projelerimizi keşfedin. Her proje, benzersiz bir hikaye anlatır.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="portfolio-filter slide-up">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                <button class="filter-btn" data-filter="sosyal-medya">Sosyal Medya</button>
+                <button class="filter-btn" data-filter="grafik-tasarim">Grafik Tasarım</button>
+                <button class="filter-btn" data-filter="video">Video Prodüksiyon</button>
+                <button class="filter-btn" data-filter="dijital-pazarlama">Dijital Pazarlama</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="portfolio-item slide-up" data-category="sosyal-medya">
+                    <div class="portfolio-image">
+                        <i class="fab fa-instagram"></i>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <p>Detayları Görüntüle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Sosyal Medya</span>
+                        <h3 class="portfolio-title">Boutique Fashion Store</h3>
+                        <p class="portfolio-description">
+                            Lüks moda markası için Instagram ve Facebook hesaplarının yönetimi. 
+                            Marka kimliğini yansıtan görsel içerikler ve etkileşimli kampanyalar.
+                        </p>
+                        <div class="portfolio-stats">
+                            <div class="stat">
+                                <div class="stat-value">150%</div>
+                                <div class="stat-label">Takipçi Artışı</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">300%</div>
+                                <div class="stat-label">Etkileşim Artışı</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">6 Ay</div>
+                                <div class="stat-label">Proje Süresi</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Instagram</span>
+                            <span class="tag">Facebook</span>
+                            <span class="tag">İçerik Üretimi</span>
+                            <span class="tag">Moda</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item slide-up" data-category="grafik-tasarim">
+                    <div class="portfolio-image">
+                        <i class="fas fa-palette"></i>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <p>Detayları Görüntüle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Grafik Tasarım</span>
+                        <h3 class="portfolio-title">TechStart Logo & Kimlik</h3>
+                        <p class="portfolio-description">
+                            Teknoloji startup'ı için modern logo tasarımı ve kurumsal kimlik çalışması. 
+                            Minimalist yaklaşımla güçlü marka imajı oluşturuldu.
+                        </p>
+                        <div class="portfolio-stats">
+                            <div class="stat">
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Tasarım Varyasyonu</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">Müşteri Memnuniyeti</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">3 Hafta</div>
+                                <div class="stat-label">Teslim Süresi</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Logo Tasarım</span>
+                            <span class="tag">Kurumsal Kimlik</span>
+                            <span class="tag">Teknoloji</span>
+                            <span class="tag">Minimalist</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item slide-up" data-category="video">
+                    <div class="portfolio-image">
+                        <i class="fas fa-video"></i>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <p>Detayları Görüntüle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Video Prodüksiyon</span>
+                        <h3 class="portfolio-title">Restoran Tanıtım Videosu</h3>
+                        <p class="portfolio-description">
+                            Butik restoran için atmosferik tanıtım videosu. Yemeklerin ve ambiyansın 
+                            sinematik görüntülenmesi ile marka değerini artıran içerik.
+                        </p>
+                        <div class="portfolio-stats">
+                            <div class="stat">
+                                <div class="stat-value">50K</div>
+                                <div class="stat-label">Video İzlenme</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">2.5K</div>
+                                <div class="stat-label">Paylaşım</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">2 Dk</div>
+                                <div class="stat-label">Video Süresi</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Tanıtım Videosu</span>
+                            <span class="tag">Restoran</span>
+                            <span class="tag">Sinematik</span>
+                            <span class="tag">Atmosferik</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item slide-up" data-category="dijital-pazarlama">
+                    <div class="portfolio-image">
+                        <i class="fas fa-bullhorn"></i>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <p>Detayları Görüntüle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Dijital Pazarlama</span>
+                        <h3 class="portfolio-title">E-ticaret Büyütme Kampanyası</h3>
+                        <p class="portfolio-description">
+                            Online mağaza için kapsamlı dijital pazarlama stratejisi. Google Ads, 
+                            Facebook Ads ve SEO optimizasyonu ile satış artışı sağlandı.
+                        </p>
+                        <div class="portfolio-stats">
+                            <div class="stat">
+                                <div class="stat-value">250%</div>
+                                <div class="stat-label">Satış Artışı</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">180%</div>
+                                <div class="stat-label">Trafik Artışı</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">4.2</div>
+                                <div class="stat-label">ROAS</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">Google Ads</span>
+                            <span class="tag">Facebook Ads</span>
+                            <span class="tag">SEO</span>
+                            <span class="tag">E-ticaret</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-item slide-up" data-category="sosyal-medya">
+                    <div class="portfolio-image">
+                        <i class="fab fa-tiktok"></i>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <p>Detayları Görüntüle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Sosyal Medya</span>
+                        <h3 class="portfolio-title">Fitness Influencer Kampanyası</h3>
+                        <p class="portfolio-description">
+                            Fitness antrenörü için TikTok ve Instagram Reels içerik stratejisi. 
+                            Viral videolar ve etkileşimli egzersiz içerikleri üretildi.
+                        </p>
+                        <div class="portfolio-stats">
+                            <div class="stat">
+                                <div class="stat-value">1.2M</div>
+                                <div class="stat-label">Video İzlenme</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">25K</div>
+                                <div class="stat-label">Yeni Takipçi</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">3 Viral</div>
+                                <div class="stat-label">Video</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">TikTok</span>
+                            <span class="tag">Instagram Reels</span>
+                            <span class="tag">Fitness</span>
+                            <span class="tag">Viral İçerik</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-item slide-up" data-category="grafik-tasarim">
+                    <div class="portfolio-image">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <p>Detayları Görüntüle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Grafik Tasarım</span>
+                        <h3 class="portfolio-title">Mobil Uygulama UI/UX</h3>
+                        <p class="portfolio-description">
+                            Sağlık uygulaması için kullanıcı dostu arayüz tasarımı. Modern ve 
+                            minimalist yaklaşımla kullanıcı deneyimi optimize edildi.
+                        </p>
+                        <div class="portfolio-stats">
+                            <div class="stat">
+                                <div class="stat-value">25</div>
+                                <div class="stat-label">Ekran Tasarımı</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">95%</div>
+                                <div class="stat-label">Kullanıcı Memnuniyeti</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">6 Hafta</div>
+                                <div class="stat-label">Tasarım Süreci</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-tags">
+                            <span class="tag">UI/UX Tasarım</span>
+                            <span class="tag">Mobil Uygulama</span>
+                            <span class="tag">Sağlık</span>
+                            <span class="tag">Minimalist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="slide-up">Projenizi Hayata Geçirelim</h2>
+            <p class="slide-up">Markanızı dijital dünyada öne çıkaracak yaratıcı çözümler için bizimle iletişime geçin.</p>
+            <div class="slide-up">
+                <a href="index.html#contact" class="btn btn-primary">Ücretsiz Konsültasyon</a>
+                <a href="hakkimizda.html" class="btn btn-outline">Ekibimizi Tanıyın</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Çınar Creative</h3>
+                    <p>Dijital dünyada yaratıcılığın yeni adı. Markanızı öne çıkaracak yaratıcı çözümler sunuyoruz.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="calismalarimiz.html">Çalışmalarımız</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="index.html#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hizmetlerimiz</h4>
+                    <ul>
+                        <li><a href="#">Sosyal Medya Yönetimi</a></li>
+                        <li><a href="#">Grafik Tasarım</a></li>
+                        <li><a href="#">Video Prodüksiyon</a></li>
+                        <li><a href="#">Dijital Pazarlama</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> info@cinarcreative.com</p>
+                        <p><i class="fas fa-phone"></i> +90 555 123 45 67</p>
+                        <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Çınar Creative. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Portfolio Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    portfolioItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || category === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
