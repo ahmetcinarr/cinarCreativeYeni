@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-barba="wrapper">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work — Çınar Creative</title>
+    <meta name="description" content="Explore the portfolio of Çınar Creative — social-first campaigns, content, and strategy." />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body data-barba="container" data-barba-namespace="work">
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-outline"></div>
+
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="logo" href="index.html"><img src="assets/icons/logo.svg" alt="Çınar Creative" /></a>
+        <nav class="nav">
+          <a href="services.html">Services</a>
+          <a class="active" href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle theme"><span class="sun">☀</span><span class="moon">🌙</span></button>
+          <a href="contact.html" class="btn btn-primary">Start a Project</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container work-page">
+      <section class="page-hero">
+        <h1>Selected Work</h1>
+        <p>Campaigns, launches, and always-on content that delivered.</p>
+      </section>
+
+      <div class="filters">
+        <button class="filter" data-filter="all">All</button>
+        <button class="filter" data-filter=".campaign">Campaigns</button>
+        <button class="filter" data-filter=".content">Content</button>
+        <button class="filter" data-filter=".strategy">Strategy</button>
+      </div>
+
+      <div id="work-grid" class="work-grid">
+        <a href="#case1" class="work-card mix campaign glightbox" data-glightbox="title: Urban Fitness Launch; description: Case Study" data-gallery="cases">
+                     <img src="assets/images/work1.svg" alt="Urban Fitness Launch" />
+          <div class="work-meta"><h3>Urban Fitness Launch</h3><span>Campaign</span></div>
+        </a>
+        <a href="#case2" class="work-card mix content glightbox" data-glightbox="title: Tech Drop Hype; description: Case Study" data-gallery="cases">
+                     <img src="assets/images/work2.svg" alt="Tech Drop Hype" />
+          <div class="work-meta"><h3>Tech Drop Hype</h3><span>Content</span></div>
+        </a>
+        <a href="#case3" class="work-card mix strategy glightbox" data-glightbox="title: Festival Moments; description: Case Study" data-gallery="cases">
+                     <img src="assets/images/work3.svg" alt="Festival Moments" />
+          <div class="work-meta"><h3>Festival Moments</h3><span>Strategy</span></div>
+        </a>
+        <a href="#case4" class="work-card mix campaign glightbox" data-glightbox="title: Eco Clean Relaunch; description: Case Study" data-gallery="cases">
+                     <img src="assets/images/work4.svg" alt="Eco Clean Relaunch" />
+          <div class="work-meta"><h3>Eco Clean Relaunch</h3><span>Campaign</span></div>
+        </a>
+      </div>
+
+      <div class="glightbox-desc">
+        <div id="case1" class="glightbox-inline">
+          <h2>Urban Fitness Launch</h2>
+          <p>Multi-phase launch with creators and UGC formats. +2.3M reach in four weeks.</p>
+          <img src="assets/images/work1.svg" alt="Case image" />
+        </div>
+        <div id="case2" class="glightbox-inline">
+          <h2>Tech Drop Hype</h2>
+          <p>Short-form content system across TikTok and Reels. 120K waitlist signups.</p>
+          <img src="assets/images/work2.svg" alt="Case image" />
+        </div>
+        <div id="case3" class="glightbox-inline">
+          <h2>Festival Moments</h2>
+          <p>Real-time coverage and highlight edits. +38% engagement.</p>
+          <img src="assets/images/work3.svg" alt="Case image" />
+        </div>
+        <div id="case4" class="glightbox-inline">
+          <h2>Eco Clean Relaunch</h2>
+          <p>Influencer rounds plus UGC reviews. 4.7x ROAS.</p>
+          <img src="assets/images/work4.svg" alt="Case image" />
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img class="footer-logo" src="assets/icons/logo.svg" alt="Çınar Creative" />
+          <p>We grow brands with social-first creativity.</p>
+        </div>
+        <nav>
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div>
+          <div class="socials">
+            <a href="#" class="glow">IG</a>
+            <a href="#" class="glow">TT</a>
+            <a href="#" class="glow">IN</a>
+          </div>
+          <small>© <span id="year"></span> Çınar Creative</small>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mixitup@3/dist/mixitup.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core" defer></script>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
