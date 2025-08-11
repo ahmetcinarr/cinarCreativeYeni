@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-barba="wrapper">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Çınar Creative</title>
+    <meta name="description" content="Start a project with Çınar Creative. Minimal contact form and location map." />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body data-barba="container" data-barba-namespace="contact">
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-outline"></div>
+
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="logo" href="index.html"><img src="assets/icons/logo.svg" alt="Çınar Creative" /></a>
+        <nav class="nav">
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a class="active" href="contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle theme"><span class="sun">☀</span><span class="moon">🌙</span></button>
+          <a href="contact.html" class="btn btn-primary">Start a Project</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container contact-page">
+      <section class="page-hero">
+        <h1>Let's build your brand</h1>
+        <p>Tell us about your goals and we’ll follow up fast.</p>
+      </section>
+
+      <div class="split contact-split">
+        <form class="contact-form" action="#" method="post" onsubmit="event.preventDefault(); this.reset(); alert('Thanks! We\'ll be in touch.');">
+          <div class="field">
+            <input type="text" id="name" name="name" required />
+            <label for="name">Name</label>
+          </div>
+          <div class="field">
+            <input type="email" id="email" name="email" required />
+            <label for="email">Email</label>
+          </div>
+          <div class="field">
+            <input type="text" id="company" name="company" />
+            <label for="company">Company</label>
+          </div>
+          <div class="field">
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <label for="message">Project details</label>
+          </div>
+          <button type="submit" class="btn btn-neon">Send</button>
+        </form>
+
+        <div class="map-wrap">
+          <div class="map-embed">
+            <iframe
+              title="Map"
+              src="https://maps.google.com/maps?q=Istanbul&t=k&z=13&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-overlay"></div>
+          </div>
+          <div class="contact-meta">
+            <a class="glow" href="#">Instagram</a>
+            <a class="glow" href="#">TikTok</a>
+            <a class="glow" href="#">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img class="footer-logo" src="assets/icons/logo.svg" alt="Çınar Creative" />
+          <p>We grow brands with social-first creativity.</p>
+        </div>
+        <nav>
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div>
+          <div class="socials">
+            <a href="#" class="glow">IG</a>
+            <a href="#" class="glow">TT</a>
+            <a href="#" class="glow">IN</a>
+          </div>
+          <small>© <span id="year"></span> Çınar Creative</small>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core" defer></script>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
